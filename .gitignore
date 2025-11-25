@@ -1,0 +1,21 @@
+#backend
+backend-api/node_modules
+backend-api/dist
+poliChamba/node_modules
+poliChamba/dist
+poliChamba/.react-router/
+
+postgres_data/
+
+backend-api/.env
+poliChamba/.env
+node_modules
+
+#Frontend
+.DS_Store
+.env
+/node_modules/
+
+# React Router
+/.react-router/
+/build/
