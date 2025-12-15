@@ -8,13 +8,14 @@ export class Application {
   id: number;
 
   @Column({ default: 'pending' })
-  status: string; 
+  status: string;
+
   @CreateDateColumn()
   appliedAt: Date;
 
-  @ManyToOne(() => User, (user) => user.applications)
+  @ManyToOne(() => User, (user) => user.applications, { onDelete: 'CASCADE' })
   user: User;
 
-  @ManyToOne(() => JobPosting, (job) => job.applications)
+  @ManyToOne(() => JobPosting, (job) => job.applications, { onDelete: 'CASCADE' })
   jobPosting: JobPosting;
 }

@@ -1,5 +1,5 @@
-import type { LinksFunction, ActionFunctionArgs } from "react-router-dom"; 
-import { Form, useActionData, redirect, Link, useNavigation } from "react-router-dom"; 
+import type { LinksFunction, ActionFunctionArgs } from "react-router"; 
+import { Form, useActionData, redirect, Link, useNavigation } from "react-router"; 
 
 function json(data: any, init?: ResponseInit) {
     return new Response(JSON.stringify(data), {
@@ -10,7 +10,6 @@ function json(data: any, init?: ResponseInit) {
         },
     });
 }
-
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
@@ -49,32 +48,34 @@ export default function RegisterPage() {
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
 
-  const inputStyle = "w-full px-3 py-2 mt-1 border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-gray-50 border-gray-300";
+  // Estilos Guinda (IPN)
+  const inputStyle = "w-full px-3 py-2 mt-1 border rounded-md focus:ring-2 focus:ring-[#6F1D35] focus:border-transparent bg-gray-50 border-gray-300 outline-none";
   const labelStyle = "block text-sm font-medium text-gray-700 mb-1";
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="w-full max-w-md space-y-8 bg-white p-10 rounded-xl shadow-lg">
-        <div>
-          <h2 className="mt-2 text-center text-3xl font-extrabold text-gray-900">
+    <div className="flex min-h-screen items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-md space-y-8 bg-white p-10 rounded-xl shadow-2xl border-t-8 border-[#6F1D35]">
+        <div className="text-center">
+          <span className="text-4xl">🦅</span>
+          <h2 className="mt-2 text-3xl font-extrabold text-[#6F1D35]">
             Crear Nueva Cuenta
           </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
-            Únete a PoliChamba hoy mismo
+          <p className="mt-2 text-sm text-gray-600">
+            Únete a la comunidad de <span className="font-bold text-[#6F1D35]">PoliChamba</span>
           </p>
         </div>
         
         <Form method="post" className="mt-8 space-y-6">
           
-          <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-            <label htmlFor="roleType" className="block text-sm font-bold text-blue-900 mb-2">
+          <div className="bg-[#f9f1f4] p-4 rounded-lg border border-[#dcbac4]">
+            <label htmlFor="roleType" className="block text-sm font-bold text-[#6F1D35] mb-2">
               ¿Cuál es tu objetivo?
             </label>
             <select 
               id="roleType" 
               name="roleType" 
               required
-              className="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white border-blue-300 text-blue-900 cursor-pointer"
+              className="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-[#6F1D35] focus:border-transparent bg-white border-[#6F1D35] text-[#6F1D35] font-medium cursor-pointer"
             >
               <option value="1">👨‍💻 Buscar Trabajo (Candidato)</option>
               <option value="2">🏢 Publicar Ofertas (Empresa)</option>
@@ -93,8 +94,8 @@ export default function RegisterPage() {
           </div>
           
           <div>
-            <label htmlFor="email" className={labelStyle}>Correo Electrónico</label>
-            <input id="email" name="email" type="email" required className={inputStyle} placeholder="ejemplo@correo.com" />
+            <label htmlFor="email" className={labelStyle}>Correo Institucional / Personal</label>
+            <input id="email" name="email" type="email" required className={inputStyle} placeholder="ejemplo@ipn.mx" />
           </div>
           
           <div>
@@ -103,8 +104,8 @@ export default function RegisterPage() {
           </div>
 
           {actionData?.error && (
-            <div className="p-3 text-sm text-red-700 bg-red-100 rounded-md border border-red-400">
-              ⚠️ {actionData.error}
+            <div className="p-3 text-sm text-red-700 bg-red-100 rounded-md border border-red-400 flex items-center gap-2">
+              ⚠️ <span>{actionData.error}</span>
             </div>
           )}
           
@@ -112,7 +113,7 @@ export default function RegisterPage() {
             <button 
               type="submit"
               disabled={isSubmitting}
-              className="w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150 ease-in-out disabled:bg-blue-400 disabled:cursor-not-allowed shadow-md hover:shadow-lg"
+              className="w-full flex justify-center py-3 px-4 border border-transparent text-sm font-bold rounded-md text-white bg-[#6F1D35] hover:bg-[#501526] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#6F1D35] transition duration-150 ease-in-out disabled:bg-gray-400 disabled:cursor-not-allowed shadow-md hover:shadow-lg"
             >
               {isSubmitting ? "Registrando..." : "Crear Cuenta"}
             </button>
@@ -121,7 +122,7 @@ export default function RegisterPage() {
           <div className="text-center mt-4">
             <p className="text-sm text-gray-600">
               ¿Ya tienes una cuenta?{' '}
-              <Link to="/login" className="font-medium text-blue-600 hover:text-blue-500 hover:underline transition duration-150 ease-in-out">
+              <Link to="/login" className="font-bold text-[#6F1D35] hover:underline transition duration-150 ease-in-out">
                 Inicia Sesión aquí
               </Link>
             </p>

@@ -29,7 +29,7 @@ export const JobDetail = ({ job }: JobDetailProps) => {
         <p className="job-detail-company">{job.company.name}</p> 
         <p className="job-detail-location">{job.location}</p>
         <p className="job-detail-salary">${job.salary} MXN</p> 
-        <button className="apply-button">Aplicar ahora</button>
+        
       </header>
 
       <div className="job-detail-body">

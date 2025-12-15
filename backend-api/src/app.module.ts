@@ -38,9 +38,10 @@ import { AuthModule } from './auth/auth.module';
         CompanyRecruiter,
       ],
       synchronize: true,
-      dropSchema: true,
+      dropSchema: false,
     }),
-    TypeOrmModule.forFeature([User]), 
+    
+    TypeOrmModule.forFeature([User, JobPosting, Application, Company]), 
 
     SeedModule,
     JobPostingModule,

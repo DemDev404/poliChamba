@@ -28,6 +28,13 @@ export class SeedService implements OnModuleInit {
   }
 
   async seedDatabase() {
+    const rolesCount = await this.roleRepository.count();
+    
+    if (rolesCount > 0) {
+      console.log('⚠️  La base de datos ya tiene datos (Roles detectados). Saltando proceso de seeding.');
+      return; 
+    }
+
     console.log('🌱 Empezando el proceso de "seeding"...');
 
     console.log('Creando roles...');
@@ -62,8 +69,12 @@ export class SeedService implements OnModuleInit {
       description: 'Agencia de diseño y branding.',
       websiteUrl: 'https://creativeminds.design',
     });
+    
     await this.companyRepository.save([company1, company2, company3]);
 
+    // ---------------------------------------------------------
+    // 5. CREACIÓN DE JOBS
+    // ---------------------------------------------------------
     console.log('Creando anuncios de trabajo...');
 
     const jobsToCreate = [

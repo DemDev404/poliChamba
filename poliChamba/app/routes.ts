@@ -8,5 +8,7 @@ export default [
   route("home", "routes/candidate-home.tsx"), 
   route("company/dashboard", "routes/company-home.tsx"),
   route("admin/dashboard", "routes/admin-home.tsx"),
+  route("company/jobs/create", "routes/job-create.tsx"),
 
 ] satisfies RouteConfig;
+
